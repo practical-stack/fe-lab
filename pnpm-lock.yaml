@@ -36,9 +36,15 @@ catalogs:
     '@vitest/coverage-v8':
       specifier: ^4.0.18
       version: 4.0.18
+    date-fns:
+      specifier: ^4.1.0
+      version: 4.1.0
     jsdom:
       specifier: ^27.4.0
       version: 27.4.0
+    lucide-react:
+      specifier: ^0.575.0
+      version: 0.575.0
     react:
       specifier: ^19.0.0
       version: 19.2.4
@@ -104,6 +110,12 @@ importers:
       '@tanstack/react-start':
         specifier: 'catalog:'
         version: 1.163.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vite@7.3.1(jiti@2.6.1)(lightningcss@1.31.1)(tsx@4.21.0)(yaml@2.8.2))
+      date-fns:
+        specifier: 'catalog:'
+        version: 4.1.0
+      lucide-react:
+        specifier: 'catalog:'
+        version: 0.575.0(react@19.2.4)
       overlay-kit:
         specifier: ^1.9.0
         version: 1.9.0(react@19.2.4)

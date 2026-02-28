@@ -21,3 +21,5 @@ catalog:
   '@testing-library/jest-dom': ^6.9.1
   '@testing-library/react': ^16.3.2
   jsdom: ^27.4.0
+  date-fns: ^4.1.0
+  lucide-react: ^0.575.0
