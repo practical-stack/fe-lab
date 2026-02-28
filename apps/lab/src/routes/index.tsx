@@ -19,6 +19,13 @@ const concepts = [
       '화면에 당장 보이지 않는 데이터를 PrefetchQuery로 미리 캐싱하여, 오버레이(바텀시트)를 Skeleton 없이 즉시 여는 패턴.',
     source: 'Prefetch + Overlay 패턴: 약관 동의 바텀시트를 로딩 없이 여는 법',
   },
+  {
+    to: '/month-selector-pagination' as const,
+    title: 'Pagination Patterns',
+    description:
+      '서버 인터페이스(Offset / Cursor / 월+Offset)에 따른 페이지네이션 구현 패턴과 keepPreviousData를 활용한 전환 UX.',
+    source: '월 선택 + 페이지네이션 패턴: 월 단위 목록 조회를 위한 이중 네비게이션',
+  },
 ]
 
 function Home() {
