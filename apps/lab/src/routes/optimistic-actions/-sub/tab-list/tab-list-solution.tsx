@@ -1,5 +1,5 @@
 import { useOptimistic, useTransition } from 'react'
-import { Spinner } from '../spinner'
+import { Spinner } from '../@shared/ui/spinner'
 
 type Tab = {
   label: string
