@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "base-nova",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "src/styles/globals.css",
+    "baseColor": "slate",
+    "cssVariables": true
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@fe-lab/ui/components",
+    "utils": "@fe-lab/ui/lib/utils",
+    "hooks": "@fe-lab/ui/hooks",
+    "lib": "@fe-lab/ui/lib",
+    "ui": "@fe-lab/ui/components"
+  }
+}
