@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { EditableTextSolution } from './editable-text-solution'
 import { saveText } from '../../-server/actions'
-import { formatCurrency } from '~/lib/utils'
+import { formatCurrency } from '~/@lib/helper/format/format-currency'
 
 export function EditableTextSolutionDemo() {
   const [goal, setGoal] = useState('10000')

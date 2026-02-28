@@ -1,5 +1,5 @@
 import { createServerFn } from '@tanstack/react-start'
-import { delay } from '~/lib/utils'
+import { delay } from '~/@lib/helper/async/delay'
 
 export const changeTab = createServerFn({ method: 'POST' })
   .inputValidator((data: string) => data)

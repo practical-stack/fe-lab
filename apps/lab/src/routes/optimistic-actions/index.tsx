@@ -4,7 +4,7 @@ import { TabListProblemDemo } from './-sub/tab-list/tab-list-problem-demo'
 import { TabListSolutionDemo } from './-sub/tab-list/tab-list-solution-demo'
 import { EditableTextProblemDemo } from './-sub/editable-text/editable-text-problem-demo'
 import { EditableTextSolutionDemo } from './-sub/editable-text/editable-text-solution-demo'
-import { CodeBlock } from './-sub/code-block'
+import { CodeBlock } from '~/@lib/ui/common/code-block'
 
 export const Route = createFileRoute('/optimistic-actions/')({
   component: OptimisticActionsPage,
