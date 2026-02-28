@@ -11,12 +11,12 @@
     "test:watch": "vitest"
   },
   "dependencies": {
+    "@fe-lab/ui": "workspace:*",
     "@tanstack/react-router": "catalog:",
     "@tanstack/react-start": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "tailwindcss": "catalog:",
-    "@fe-lab/ui": "workspace:*"
+    "tailwindcss": "catalog:"
   },
   "devDependencies": {
     "@tailwindcss/vite": "catalog:",
@@ -27,6 +27,7 @@
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
     "jsdom": "catalog:",
+    "shiki": "^4.0.0",
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-tsconfig-paths": "catalog:",
