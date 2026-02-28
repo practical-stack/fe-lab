@@ -1,5 +1,5 @@
 import { useOptimistic, useState, useTransition } from 'react'
-import { Spinner } from './spinner'
+import { Spinner } from '../spinner'
 
 type EditableTextProps = {
   value: string
@@ -8,7 +8,7 @@ type EditableTextProps = {
   onChange?: (e: React.SyntheticEvent) => void
 }
 
-export function EditableText({ value, displayValue, action, onChange }: EditableTextProps) {
+export function EditableTextSolution({ value, displayValue, action, onChange }: EditableTextProps) {
   const [isPending, startTransition] = useTransition()
   const [optimisticValue, setOptimisticValue] = useOptimistic(value)
   const [isEditing, setIsEditing] = useState(false)

@@ -1,17 +1,16 @@
 import { useState } from 'react'
-import { EditableText } from './editable-text'
-import { saveText } from '../-server/actions'
+import { EditableTextSolution } from './editable-text-solution'
+import { saveText } from '../../-server/actions'
 import { formatCurrency } from '~/lib/utils'
 
-export function EditableTextDemo() {
+export function EditableTextSolutionDemo() {
   const [goal, setGoal] = useState('10000')
 
   return (
     <div className="space-y-3">
-      <h3 className="text-sm font-medium text-gray-500">EditableText</h3>
       <div className="flex items-center gap-2">
         <span className="text-sm text-gray-700">Revenue Goal:</span>
-        <EditableText
+        <EditableTextSolution
           value={goal}
           action={async (value) => {
             await saveText({ data: value })

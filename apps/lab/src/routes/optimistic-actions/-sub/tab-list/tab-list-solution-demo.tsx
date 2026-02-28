@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { TabList } from './tab-list'
-import { changeTab } from '../-server/actions'
+import { TabListSolution } from './tab-list-solution'
+import { changeTab } from '../../-server/actions'
 
 const tabs = [
   { label: 'All', value: 'all' },
@@ -8,13 +8,12 @@ const tabs = [
   { label: 'Completed', value: 'completed' },
 ]
 
-export function TabListDemo() {
+export function TabListSolutionDemo() {
   const [activeTab, setActiveTab] = useState('all')
 
   return (
     <div className="space-y-3">
-      <h3 className="text-sm font-medium text-gray-500">TabList</h3>
-      <TabList
+      <TabListSolution
         tabs={tabs}
         activeTab={activeTab}
         changeAction={async (value) => {

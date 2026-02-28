@@ -26,10 +26,10 @@ function RootComponent() {
               FE Lab
             </Link>
             <Link
-              to="/action-props"
+              to="/optimistic-actions"
               className="text-sm text-gray-600 hover:text-gray-900 [&.active]:font-semibold [&.active]:text-blue-600"
             >
-              Action Props
+              Optimistic Actions
             </Link>
           </div>
         </nav>

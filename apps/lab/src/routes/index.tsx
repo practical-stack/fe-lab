@@ -7,8 +7,8 @@ export const Route = createFileRoute('/')({
 
 const concepts = [
   {
-    to: '/action-props' as const,
-    title: 'Action Props',
+    to: '/optimistic-actions' as const,
+    title: 'Optimistic Actions',
     description:
       'React 19 patterns: useTransition, useOptimistic, and async action props for building responsive design components.',
     source: 'Aurora Scharff - Building Design Components with Action Props',

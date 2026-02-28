@@ -1,5 +1,5 @@
 import { useOptimistic, useTransition } from 'react'
-import { Spinner } from './spinner'
+import { Spinner } from '../spinner'
 
 type Tab = {
   label: string
@@ -13,7 +13,7 @@ type TabListProps = {
   onChange?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export function TabList({ tabs, activeTab, changeAction, onChange }: TabListProps) {
+export function TabListSolution({ tabs, activeTab, changeAction, onChange }: TabListProps) {
   const [optimisticTab, setOptimisticTab] = useOptimistic(activeTab)
   const [isPending, startTransition] = useTransition()
 
