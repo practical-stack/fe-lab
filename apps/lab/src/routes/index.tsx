@@ -12,6 +12,13 @@ const concepts = [
       'React 19 patterns: useTransition, useOptimistic, and async action props for building responsive design components.',
     source: 'Aurora Scharff - Building Design Components with Action Props',
   },
+  {
+    to: '/prefetch-overlay' as const,
+    title: 'Prefetch + Overlay',
+    description:
+      '화면에 당장 보이지 않는 데이터를 PrefetchQuery로 미리 캐싱하여, 오버레이(바텀시트)를 Skeleton 없이 즉시 여는 패턴.',
+    source: 'Prefetch + Overlay 패턴: 약관 동의 바텀시트를 로딩 없이 여는 법',
+  },
 ]
 
 function Home() {
