@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { ProblemEagerDemo } from './-sub/problem-eager-demo'
 import { ProblemDemo } from './-sub/problem-demo'
 import { SolutionDemo } from './-sub/solution-demo'
-import { Panel } from './-sub/@shared/ui/panel'
+import { Panel } from '~/@lib/ui/common/panel'
 
 export const Route = createFileRoute('/prefetch-overlay/')({
   component: PrefetchOverlayPage,
