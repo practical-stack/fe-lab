@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { Button } from '@fe-lab/ui/components/button'
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -18,7 +19,14 @@ function Home() {
   return (
     <div>
       <h1 className="mb-2 text-2xl font-bold text-gray-900">FE Lab</h1>
-      <p className="mb-8 text-gray-600">Exploring modern frontend patterns and concepts.</p>
+      <p className="mb-4 text-gray-600">Exploring modern frontend patterns and concepts.</p>
+      <div className="mb-8 flex gap-2">
+        <Button>Default</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="destructive">Destructive</Button>
+      </div>
       <div className="grid gap-4">
         {concepts.map((concept) => (
           <Link
