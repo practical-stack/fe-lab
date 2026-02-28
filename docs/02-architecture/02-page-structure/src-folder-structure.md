@@ -67,15 +67,15 @@ order: 2
 src/
 ├── components/
 │   ├── products/
-│   │   ├── ProductSummary.tsx       // 🔴 상품 관련 컴포넌트
-│   │   └── ProductForm.tsx
+│   │   ├── product-summary.tsx       // 🔴 상품 관련 컴포넌트
+│   │   └── product-form.tsx
 │   └── common/
-│       └── Button.tsx
+│       └── button.tsx
 ├── hooks/
-│   ├── useProductData.ts            // 🔴 상품 관련 훅
-│   └── useAuth.ts
+│   ├── use-product-data.ts            // 🔴 상품 관련 훅
+│   └── use-auth.ts
 ├── utils/
-│   ├── priceCalculator.ts           // 🔴 상품 관련 유틸
+│   ├── price-calculator.ts           // 🔴 상품 관련 유틸
 │   └── formatter.ts
 ├── pages/
 │   └── products/
@@ -102,13 +102,13 @@ src/
     │   ├── ui/
     │   │   └── product-common-header.tsx
     │   └── helper/
-    │       ├── useProductCalculator.ts
-    │       └── productFormatter.ts
+    │       ├── use-product-calculator.ts
+    │       └── product-formatter.ts
     └── checkout/                    // 🟢 기능별 폴더
         ├── @shared/                 // 🟢 checkout 기능 내 공용
         │   ├── ui/
         │   └── helper/
-        │       └── useCheckoutFlow.ts
+        │       └── use-checkout-flow.ts
         │
         │   // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
         │   // 📌 Case 1: 단일 뷰 페이지 (대부분의 케이스)
@@ -123,8 +123,8 @@ src/
         │       ├── header/
         │       │   ├── header.tsx
         │       │   ├── header.helper/       // 로직 (선택사항)
-        │       │   │   ├── calculateProgress.ts
-        │       │   │   └── calculateProgress.test.ts
+        │       │   │   ├── calculate-progress.ts
+        │       │   │   └── calculate-progress.test.ts
         │       │   └── header.ui/           // UI 컴포넌트 (선택사항)
         │       │       ├── title.tsx
         │       │       └── subtitle.tsx
@@ -209,8 +209,8 @@ src/
 > header/
 > ├── header.tsx
 > ├── header.helper/        // helper가 2개+ 파일이면 폴더
-> │   ├── calculateProgress.ts
-> │   └── formatData.ts
+> │   ├── calculate-progress.ts
+> │   └── format-data.ts
 > └── header.ui/            // ui가 2개+ 파일이면 폴더
 >     ├── title.tsx
 >     └── progress-bar.tsx
@@ -358,8 +358,8 @@ intro-page.sub/
     │
     │   // 여러 파일이 필요하면 폴더
     ├── header.helper/          // helper가 2개+ 면 폴더
-    │   ├── calculateProgress.ts
-    │   └── formatData.ts
+    │   ├── calculate-progress.ts
+    │   └── format-data.ts
     │
     │   // ui도 동일한 규칙
     ├── header.ui.tsx           // ui가 1개면 파일
@@ -565,8 +565,8 @@ header/
 header/
 ├── header.tsx                  // 메인 컴포넌트 (Smart Component)
 ├── header.helper/              // helper 2개+ → 폴더
-│   ├── calculateProgress.ts
-│   └── calculateProgress.test.ts
+│   ├── calculate-progress.ts
+│   └── calculate-progress.test.ts
 └── header.ui/                  // ui 2개+ → 폴더
     ├── progress-bar.tsx
     └── title.tsx
