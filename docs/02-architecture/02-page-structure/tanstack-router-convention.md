@@ -8,7 +8,7 @@ order: 3
 
 # TanStack Router 폴더 구조 컨벤션
 
-> 이 문서는 [Source Folder Structure](./src-folder-structure.md)의 컨벤션을 TanStack Router/Start의 파일 기반 라우팅 환경에 맞게 매핑합니다. 기본 원칙(500줄 기준, 파일/폴더 선택 규칙, @shared 승격, barrel export 금지, kebab-case)은 모두 동일하게 적용됩니다.
+> 이 문서는 [Source Folder Structure](./src-folder-structure.md)의 컨벤션을 TanStack Router/Start의 파일 기반 라우팅 환경에 맞게 매핑합니다. 기본 원칙(300줄 기준, 파일/폴더 선택 규칙, @shared 승격, barrel export 금지, kebab-case)은 모두 동일하게 적용됩니다.
 
 ---
 
@@ -128,7 +128,7 @@ function CheckoutIntroPage() { /* ... */ }  // 명확
 
 ## 4. 실제 구조 예시
 
-### 500줄 이하 (분리 불필요)
+### 300줄 이하 (분리 불필요)
 
 대부분의 페이지는 이 구조입니다. `index.tsx` 하나에 모든 로직과 UI를 포함합니다.
 
@@ -146,7 +146,7 @@ export const Route = createFileRoute('/action-props/')({
 })
 
 function ActionPropsPage() {
-  // 비즈니스 로직, UI 모두 포함 (500줄 이하)
+  // 비즈니스 로직, UI 모두 포함 (300줄 이하)
   return (/* ... */)
 }
 
@@ -155,7 +155,7 @@ function TabListDemo() { /* ... */ }
 function EditableTextDemo() { /* ... */ }
 ```
 
-### 500줄 초과 (sub 분리)
+### 300줄 초과 (sub 분리)
 
 ```
 action-props/
@@ -214,7 +214,7 @@ checkout/
 └── -event.ts
 ```
 
-### 복잡한 sub 내부 분리 (sub 내부도 500줄 초과)
+### 복잡한 sub 내부 분리 (sub 내부도 300줄 초과)
 
 ```
 checkout/
@@ -300,7 +300,7 @@ src/routes/                             ← TanStack Router 관할
 
 | 원칙 | 내용 |
 |------|------|
-| 500줄 기준 | 500줄 이하면 단일 파일 유지, 초과 시 분리 |
+| 300줄 기준 | 300줄 이하면 단일 파일 유지, 초과 시 분리 |
 | 파일/폴더 선택 | 1개면 파일 (`*.helper.ts`), 2개+면 폴더 (`*.helper/`) |
 | @shared 승격 | 2곳 이상에서 사용 시 즉시 `@shared/`로 이동 |
 | barrel export 금지 | `index.ts`를 통한 re-export 금지 (라우트 `index.tsx`와 혼동 주의) |

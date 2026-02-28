@@ -41,7 +41,7 @@ TanStack Router 파일 기반 라우팅 환경에서의 폴더 구조 컨벤션
 - TanStack Router 파일 기반 라우팅 기본 규칙 (`index.tsx`, `-` prefix)
 - src-folder-structure 컨벤션의 TanStack Router 매핑 테이블
 - 페이지명 식별 문제와 해결 (폴더명 + 컴포넌트명)
-- 실제 구조 예시 (500줄 이하/초과, 멀티 뷰)
+- 실제 구조 예시 (300줄 이하/초과, 멀티 뷰)
 
 **핵심 개념:** `-` prefix로 라우팅 제외, 기존 컨벤션 원칙은 그대로 유지
 
