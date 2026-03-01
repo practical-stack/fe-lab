@@ -16,7 +16,8 @@ docs/
 ├── 00-meta/                # 문서화 시스템 메타 정보 (Frontmatter 스키마, AI 문서화 방법론)
 ├── 01-project-ops/         # 프로젝트 운영 (PR 작성법 등)
 ├── 02-architecture/        # 아키텍처 & 컨벤션
-└── 03-best-practice/       # 코딩 패턴 가이드 (API, 에러처리, 테스트, TS, 스타일, 비주얼에셋, AI)
+├── 03-best-practice/       # 코딩 패턴 가이드 (API, 에러처리, 테스트, TS, 스타일, 비주얼에셋, AI)
+└── 04-patterns/            # 요구사항 기반 구현 패턴 (라이브 데모 + 소스 코드 레퍼런스)
 ```
 
 ---
@@ -56,6 +57,14 @@ API 패턴, 에러 처리, 테스트, TypeScript, 스타일/레이아웃, AI 활
 - **[04-style-layout](./03-best-practice/04-style-layout/)** - 반응형 이미지, 간격, Section 패턴
 - **[05-visual-asset-guide](./03-best-practice/05-visual-asset-guide/)** - Picture, Icon, Image, Lottie 사용 가이드
 - **[06-ai](./03-best-practice/06-ai/)** - AI 활용 베스트 프랙티스 (DeepSearch 메타 프롬프트 방법론)
+
+---
+
+### [04-patterns](./04-patterns/) - 요구사항 기반 구현 패턴
+실제 요구사항에서 출발한 프론트엔드 패턴. 라이브 데모와 소스 코드 레퍼런스 포함.
+
+- [Prefetch + Overlay](./04-patterns/prefetch-overlay.md) — 오버레이를 Skeleton 없이 즉시 여는 패턴
+- [월 선택 + 페이지네이션](./04-patterns/month-selector-pagination.md) — 월 네비게이션 + 페이지네이션 이중 축 네비게이션
 
 ---
 
