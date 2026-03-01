@@ -76,7 +76,7 @@ export const TermsSuspenseQuery = ({ caseType, fallback, children }) => (
 ### 4. 페이지에서 조합: Prefetch는 트리거 버튼 가까이에 배치
 
 ```typescript
-<TermsPrefetchQuery caseType="LOAN_ALIMI">
+<TermsPrefetchQuery caseType="TERMS_CASE_A">
   <FloatingButton onClick={() => overlay.open(TermsBottomSheet)} />
 </TermsPrefetchQuery>
 ```
@@ -88,7 +88,7 @@ const TermsBottomSheet = () => (
   <>
     <PrefetchQuery {...nextPageQueryOptions()} />  {/* 다음 화면 데이터 미리 캐싱 */}
     <BottomSheet>
-      <TermsSuspenseQuery caseType="LOAN_ALIMI" fallback={<Skeleton />}>
+      <TermsSuspenseQuery caseType="TERMS_CASE_A" fallback={<Skeleton />}>
         {(data) => <TermsList data={data} />}
       </TermsSuspenseQuery>
     </BottomSheet>
