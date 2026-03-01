@@ -1,6 +1,7 @@
 packages:
   - 'apps/*'
   - 'packages/*'
+  - 'packages/primitive/*'
 
 catalog:
   react: ^19.0.0

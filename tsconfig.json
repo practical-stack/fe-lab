@@ -2,5 +2,5 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {},
   "files": [],
-  "references": [{ "path": "packages/ui" }, { "path": "apps/lab" }]
+  "references": [{ "path": "packages/ui" }, { "path": "packages/primitive/error" }, { "path": "apps/lab" }]
 }

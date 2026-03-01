@@ -1,0 +1,21 @@
+{
+  "name": "@fe-lab/error",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "lint": "oxlint -c ../../../.oxlintrc.json"
+  },
+  "exports": {
+    ".": {
+      "@repo/source": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "devDependencies": {
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}
