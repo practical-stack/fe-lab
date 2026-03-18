@@ -26,6 +26,13 @@ const concepts = [
       '서버 인터페이스(Offset / Cursor / 월+Offset)에 따른 페이지네이션 구현 패턴과 keepPreviousData를 활용한 전환 UX.',
     source: '월 선택 + 페이지네이션 패턴: 월 단위 목록 조회를 위한 이중 네비게이션',
   },
+  {
+    to: '/sticky-header' as const,
+    title: 'Sticky Header',
+    description:
+      '중간에 위치한 컴포넌트가 스크롤되어 화면 상단에 닿으면 고정되는 패턴. IntersectionObserver sentinel로 sticky 상태를 감지하여 시각적 피드백을 제공합니다.',
+    source: 'Sticky Header 패턴: IntersectionObserver + CSS sticky',
+  },
 ]
 
 function Home() {

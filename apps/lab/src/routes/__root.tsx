@@ -55,6 +55,12 @@ function RootComponent() {
                 >
                   Pagination
                 </Link>
+                <Link
+                  to="/sticky-header"
+                  className="text-sm text-gray-600 hover:text-gray-900 [&.active]:font-semibold [&.active]:text-blue-600"
+                >
+                  Sticky Header
+                </Link>
               </div>
             </nav>
             <main className="mx-auto max-w-4xl px-4 py-8">
