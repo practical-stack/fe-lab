@@ -85,7 +85,7 @@ export function StickyHeaderDemo() {
   return (
     <div
       ref={scrollContainerRef}
-      className="relative h-[600px] overflow-y-auto rounded-lg border border-gray-200 bg-white"
+      className="relative h-150 overflow-y-auto rounded-lg border border-gray-200 bg-white"
     >
       <div className="p-6">
         <h3 className="mb-2 text-lg font-semibold text-gray-900">페이지 상단 콘텐츠</h3>
@@ -94,7 +94,7 @@ export function StickyHeaderDemo() {
         </p>
 
         {/* Hero 영역 */}
-        <div className="mb-6 rounded-lg bg-gradient-to-r from-blue-50 to-indigo-50 p-8">
+        <div className="mb-6 rounded-lg bg-linear-to-r from-blue-50 to-indigo-50 p-8">
           <h2 className="mb-2 text-xl font-bold text-gray-800">상품 목록</h2>
           <p className="text-sm text-gray-600">카테고리별로 상품을 확인하세요.</p>
         </div>

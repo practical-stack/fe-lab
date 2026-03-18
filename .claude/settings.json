@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/check-tailwind-canonical.sh"
+            "command": "FILE_PATH=$(cat | jq -r '.tool_input.file_path // empty'); case \"$FILE_PATH\" in *.tsx|*.ts|*.jsx|*.js|*.html|*.vue|*.svelte) echo '[MAGIC KEYWORD: fix-tailwind-canonical] Run fix-tailwind-canonical skill on '\"$FILE_PATH\" >&2 ;; esac; exit 0"
           }
         ]
       }
