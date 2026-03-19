@@ -33,6 +33,13 @@ const concepts = [
       '중간에 위치한 컴포넌트가 스크롤되어 화면 상단에 닿으면 고정되는 패턴. IntersectionObserver sentinel로 sticky 상태를 감지하여 시각적 피드백을 제공합니다.',
     source: 'Sticky Header 패턴: IntersectionObserver + CSS sticky',
   },
+  {
+    to: '/swipeable-tabs' as const,
+    title: 'Swipeable Tabs',
+    description:
+      '탭 패널을 좌우 스와이프로 전환하는 패턴. CSS scroll-snap으로 제스처를 처리하고, scrollIntoView로 프로그래밍 전환, 스크롤 위치 기반 탭 인디케이터 자동 동기화.',
+    source: 'devongovett/rac-swipeable-tabs (React Aria Components)',
+  },
 ]
 
 function Home() {

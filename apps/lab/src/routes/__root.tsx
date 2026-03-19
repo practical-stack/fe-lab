@@ -61,6 +61,12 @@ function RootComponent() {
                 >
                   Sticky Header
                 </Link>
+                <Link
+                  to="/swipeable-tabs"
+                  className="text-sm text-gray-600 hover:text-gray-900 [&.active]:font-semibold [&.active]:text-blue-600"
+                >
+                  Swipeable Tabs
+                </Link>
               </div>
             </nav>
             <main className="mx-auto max-w-4xl px-4 py-8">
