@@ -26,5 +26,10 @@
       "esbuild",
       "nx"
     ]
+  },
+  "msw": {
+    "workerDirectory": [
+      "apps/lab/public"
+    ]
   }
 }

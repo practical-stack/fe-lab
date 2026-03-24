@@ -40,6 +40,13 @@ const concepts = [
       '탭 패널을 좌우 스와이프로 전환하는 패턴. CSS scroll-snap으로 제스처를 처리하고, scrollIntoView로 프로그래밍 전환, 스크롤 위치 기반 탭 인디케이터 자동 동기화.',
     source: 'devongovett/rac-swipeable-tabs (React Aria Components)',
   },
+  {
+    to: '/graphql' as const,
+    title: 'GraphQL',
+    description:
+      'GraphQL 기초부터 Relay 딥다이브까지 — REST의 한계, 쿼리/뮤테이션 기본, 스키마 타입 시스템, Fragment Colocation, 커서 페이지네이션, Optimistic Updates 등.',
+    source: 'GraphQL + Relay: 단계별 학습 가이드',
+  },
 ]
 
 function Home() {

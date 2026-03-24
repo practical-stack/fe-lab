@@ -1,0 +1,104 @@
+type Query {
+  user(id: ID!): User
+  users(first: Int = 10, after: String): UserConnection!
+  post(id: ID!): Post
+  posts(first: Int = 10, after: String): PostConnection!
+}
+
+type Mutation {
+  createPost(input: CreatePostInput!): CreatePostPayload!
+  updatePost(input: UpdatePostInput!): UpdatePostPayload!
+  deletePost(id: ID!): DeletePostPayload!
+  addComment(input: AddCommentInput!): AddCommentPayload!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  avatar: String
+  posts: [Post!]!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  body: String!
+  author: User!
+  comments: [Comment!]!
+  createdAt: String!
+}
+
+type Comment {
+  id: ID!
+  body: String!
+  author: User!
+  post: Post!
+  createdAt: String!
+}
+
+# Relay-style connection types
+type UserConnection {
+  edges: [UserEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+type PostConnection {
+  edges: [PostEdge!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type PostEdge {
+  node: Post!
+  cursor: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+# Input types
+input CreatePostInput {
+  title: String!
+  body: String!
+  authorId: ID!
+}
+
+input UpdatePostInput {
+  id: ID!
+  title: String
+  body: String
+}
+
+input AddCommentInput {
+  postId: ID!
+  body: String!
+  authorId: ID!
+}
+
+# Payload types
+type CreatePostPayload {
+  post: Post!
+}
+
+type UpdatePostPayload {
+  post: Post!
+}
+
+type DeletePostPayload {
+  deletedId: ID!
+}
+
+type AddCommentPayload {
+  comment: Comment!
+}
