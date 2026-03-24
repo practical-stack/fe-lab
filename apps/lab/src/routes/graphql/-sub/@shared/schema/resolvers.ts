@@ -59,7 +59,25 @@ export function resetMutableData() {
 }
 
 export const resolvers = {
+  Node: {
+    __resolveType(obj: { id: string }) {
+      // Determine type based on which collection the object belongs to
+      if (users.find((u) => u.id === obj.id)) return 'User'
+      if (mutablePosts.find((p) => p.id === obj.id)) return 'Post'
+      if (mutableComments.find((c) => c.id === obj.id)) return 'Comment'
+      return null
+    },
+  },
+
   Query: {
+    node: (_: unknown, { id }: { id: string }) => {
+      return (
+        users.find((u) => u.id === id) ??
+        mutablePosts.find((p) => p.id === id) ??
+        mutableComments.find((c) => c.id === id) ??
+        null
+      )
+    },
     user: (_: unknown, { id }: { id: string }) => users.find((u) => u.id === id) ?? null,
     users: (_: unknown, { first = 10, after }: { first?: number; after?: string }) =>
       paginateArray(users, first, after),

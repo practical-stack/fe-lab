@@ -5,6 +5,16 @@ import { RestProblemDemo } from './-sub/01-rest-vs-graphql/rest-problem-demo'
 import { GraphQLSolutionDemo } from './-sub/01-rest-vs-graphql/graphql-solution-demo'
 import { QueryMutationDemo } from './-sub/02-query-mutation-basics/query-mutation-demo'
 import { SchemaExplorerDemo } from './-sub/03-schema-type-system/schema-explorer-demo'
+import { RelaySetupDemo } from './-sub/04-relay-environment/relay-setup-demo'
+import { FragmentProblemDemo } from './-sub/05-fragment-colocation/problem-demo'
+import { FragmentSolutionDemo } from './-sub/05-fragment-colocation/solution-demo'
+import { PaginationProblemDemo } from './-sub/06-pagination/problem-demo'
+import { PaginationSolutionDemo } from './-sub/06-pagination/solution-demo'
+import { OptimisticProblemDemo } from './-sub/07-optimistic-updates/problem-demo'
+import { OptimisticSolutionDemo } from './-sub/07-optimistic-updates/solution-demo'
+import { SubscriptionDemo } from './-sub/08-subscriptions/subscription-demo'
+import { DeferStreamDemo } from './-sub/09-defer-stream/defer-stream-demo'
+import { StoreCacheDemo } from './-sub/10-store-cache/store-cache-demo'
 
 export const Route = createFileRoute('/graphql/')({
   component: GraphQLPage,
@@ -198,15 +208,236 @@ function GraphQLPage() {
           </div>
         </div>
 
-        {/* Phase 2 & 3 Placeholders */}
-        <div className="rounded-lg border border-dashed border-gray-300 bg-gray-50 p-8 text-center">
-          <p className="text-sm text-gray-500">
-            Phase 2: Relay Introduction (Fragment Colocation, Pagination) — Coming soon
-          </p>
-          <p className="mt-1 text-sm text-gray-500">
-            Phase 3: Relay Deep Dive (Optimistic Updates, Subscriptions, @defer/@stream) — Coming
-            soon
-          </p>
+        {/* Phase 2: Relay Introduction */}
+        <div>
+          <h2 className="mb-6 border-b border-gray-200 pb-2 text-xl font-bold text-gray-800">
+            Phase 2: Relay Introduction
+          </h2>
+
+          <div className="space-y-12">
+            {/* 4. Relay Environment Setup */}
+            <section>
+              <h3 className="mb-1 text-lg font-semibold text-gray-900">
+                4. Relay Environment Setup
+              </h3>
+              <p className="mb-4 text-sm text-gray-500">
+                Relay Environment 구성 — Network Layer, Store, RelayEnvironmentProvider
+              </p>
+              <div className="rounded-lg border border-blue-200 bg-blue-50/30 p-5">
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-semibold text-blue-700">
+                    Relay
+                  </span>
+                  <span className="text-sm font-medium text-gray-700">
+                    Environment + useLazyLoadQuery
+                  </span>
+                </div>
+                <div className="mb-3 rounded-lg border border-blue-100 bg-white p-4">
+                  <RelaySetupDemo />
+                </div>
+                <p className="text-sm leading-relaxed text-gray-600">
+                  Relay Environment은 Network(서버 통신)와 Store(정규화 캐시)로 구성됩니다.{' '}
+                  <code className="text-xs">useLazyLoadQuery</code>는 컴포넌트 렌더링 시 쿼리를
+                  실행하고, Suspense로 로딩 상태를 처리합니다. 같은 ID를 다시 선택하면 Store
+                  캐시에서 즉시 반환됩니다.
+                </p>
+              </div>
+
+              <div className="mt-3 rounded-md border border-gray-200 bg-gray-900 p-3">
+                <pre className="overflow-x-auto text-xs text-green-400">{RELAY_ENVIRONMENT_CODE}</pre>
+              </div>
+            </section>
+
+            {/* 5. Fragment Colocation */}
+            <section>
+              <h3 className="mb-1 text-lg font-semibold text-gray-900">
+                5. Fragment Colocation
+              </h3>
+              <p className="mb-4 text-sm text-gray-500">
+                Prop drilling 문제를 Relay Fragment로 해결하기 — 컴포넌트별 데이터 요구사항 선언
+              </p>
+              <div className="space-y-4">
+                <Panel
+                  variant="problem"
+                  label="Problem"
+                  tag="Prop Drilling"
+                  data={{
+                    description:
+                      '루트 컴포넌트가 모든 데이터를 가져와서 자식에게 props로 전달합니다. 자식 컴포넌트에 필드를 추가하면 쿼리와 모든 중간 컴포넌트의 props를 수정해야 합니다.',
+                    demo: <FragmentProblemDemo />,
+                    code: FRAGMENT_PROBLEM_CODE,
+                  }}
+                />
+                <Panel
+                  variant="solution"
+                  label="Solution"
+                  tag="Relay Fragments"
+                  data={{
+                    description:
+                      '각 컴포넌트가 자신의 fragment로 데이터 요구사항을 선언합니다. Relay 컴파일러가 fragment를 자동으로 합성하여 하나의 최적화된 쿼리로 만들어줍니다. 부모 컴포넌트는 fragment ref만 전달합니다.',
+                    demo: <FragmentSolutionDemo />,
+                    code: FRAGMENT_SOLUTION_CODE,
+                  }}
+                />
+              </div>
+            </section>
+
+            {/* 6. Pagination */}
+            <section>
+              <h3 className="mb-1 text-lg font-semibold text-gray-900">
+                6. Pagination (Connection Spec)
+              </h3>
+              <p className="mb-4 text-sm text-gray-500">
+                수동 오프셋 페이지네이션 vs Relay의 커서 기반 @connection + usePaginationFragment
+              </p>
+              <div className="space-y-4">
+                <Panel
+                  variant="problem"
+                  label="Problem"
+                  tag="Manual Offset Pagination"
+                  data={{
+                    description:
+                      '페이지 전환 시 기존 데이터를 교체하고, 오프셋 기반이라 중간 삽입/삭제 시 항목이 중복되거나 누락됩니다. 상태 관리도 수동으로 해야 합니다.',
+                    demo: <PaginationProblemDemo />,
+                    code: PAGINATION_PROBLEM_CODE,
+                  }}
+                />
+                <Panel
+                  variant="solution"
+                  label="Solution"
+                  tag="@connection + usePaginationFragment"
+                  data={{
+                    description:
+                      'Relay의 usePaginationFragment가 커서 기반 페이지네이션을 자동으로 관리합니다. 새 페이지는 기존 데이터에 누적되고, hasNext/loadNext를 제공하며, @connection으로 정규화된 캐시를 유지합니다.',
+                    demo: <PaginationSolutionDemo />,
+                    code: PAGINATION_SOLUTION_CODE,
+                  }}
+                />
+              </div>
+            </section>
+          </div>
+        </div>
+
+        {/* Phase 3: Relay Deep Dive */}
+        <div>
+          <h2 className="mb-6 border-b border-gray-200 pb-2 text-xl font-bold text-gray-800">
+            Phase 3: Relay Deep Dive
+          </h2>
+
+          <div className="space-y-12">
+            {/* 7. Optimistic Updates */}
+            <section>
+              <h3 className="mb-1 text-lg font-semibold text-gray-900">7. Optimistic Updates</h3>
+              <p className="mb-4 text-sm text-gray-500">
+                뮤테이션 시 서버 응답을 기다리지 않고 UI를 즉시 업데이트하기
+              </p>
+              <div className="space-y-4">
+                <Panel
+                  variant="problem"
+                  label="Problem"
+                  tag="서버 응답 대기"
+                  data={{
+                    description:
+                      '댓글을 작성하면 서버 응답(~300ms)까지 UI가 멈춥니다. 사용자에게 즉각적인 피드백이 없어 "클릭이 됐나?" 하는 불확실성이 생깁니다.',
+                    demo: <OptimisticProblemDemo />,
+                    code: OPTIMISTIC_PROBLEM_CODE,
+                  }}
+                />
+                <Panel
+                  variant="solution"
+                  label="Solution"
+                  tag="Relay Optimistic Response"
+                  data={{
+                    description:
+                      'Relay의 optimisticResponse로 가짜 데이터를 Store에 먼저 기록합니다. UI가 즉시 업데이트되고, 서버 응답이 도착하면 실제 데이터로 교체됩니다. 실패 시 자동 롤백.',
+                    demo: <OptimisticSolutionDemo />,
+                    code: OPTIMISTIC_SOLUTION_CODE,
+                  }}
+                />
+              </div>
+            </section>
+
+            {/* 8. Subscriptions */}
+            <section>
+              <h3 className="mb-1 text-lg font-semibold text-gray-900">8. Subscriptions</h3>
+              <p className="mb-4 text-sm text-gray-500">
+                GraphQL Subscriptions로 실시간 데이터 업데이트 받기
+              </p>
+              <div className="rounded-lg border border-blue-200 bg-blue-50/30 p-5">
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="rounded bg-blue-100 px-2 py-0.5 text-xs font-semibold text-blue-700">
+                    Real-time
+                  </span>
+                  <span className="text-sm font-medium text-gray-700">Live Comment Feed</span>
+                </div>
+                <div className="mb-3 rounded-lg border border-blue-100 bg-white p-4">
+                  <SubscriptionDemo />
+                </div>
+                <p className="text-sm leading-relaxed text-gray-600">
+                  GraphQL Subscription은 WebSocket 연결을 통해 서버에서 클라이언트로 실시간
+                  이벤트를 푸시합니다. Relay의{' '}
+                  <code className="text-xs">requestSubscription</code>이 연결 수명주기와 Store
+                  업데이트를 자동으로 관리합니다.
+                </p>
+              </div>
+            </section>
+
+            {/* 9. @defer/@stream */}
+            <section>
+              <h3 className="mb-1 text-lg font-semibold text-gray-900">9. @defer / @stream</h3>
+              <p className="mb-4 text-sm text-gray-500">
+                점진적 데이터 전달로 Time-to-First-Paint 최적화하기
+              </p>
+              <div className="rounded-lg border border-purple-200 bg-purple-50/30 p-5">
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="rounded bg-purple-100 px-2 py-0.5 text-xs font-semibold text-purple-700">
+                    Incremental
+                  </span>
+                  <span className="text-sm font-medium text-gray-700">
+                    Blocking vs Deferred Loading
+                  </span>
+                </div>
+                <div className="mb-3 rounded-lg border border-purple-100 bg-white p-4">
+                  <DeferStreamDemo />
+                </div>
+                <p className="text-sm leading-relaxed text-gray-600">
+                  <code className="text-xs">@defer</code>는 느린 필드를 별도 청크로 스트리밍하여,
+                  빠른 필드부터 먼저 화면에 표시합니다.{' '}
+                  <code className="text-xs">@stream</code>은 리스트 항목을 하나씩 전달합니다.
+                  두 디렉티브 모두 GraphQL 스펙 draft 단계이며, 서버 지원이 필요합니다.
+                </p>
+              </div>
+            </section>
+
+            {/* 10. Store & Cache */}
+            <section>
+              <h3 className="mb-1 text-lg font-semibold text-gray-900">
+                10. Relay Store & Cache Management
+              </h3>
+              <p className="mb-4 text-sm text-gray-500">
+                정규화 캐시, Garbage Collection, Store Invalidation 이해하기
+              </p>
+              <div className="rounded-lg border border-indigo-200 bg-indigo-50/30 p-5">
+                <div className="mb-3 flex items-center gap-2">
+                  <span className="rounded bg-indigo-100 px-2 py-0.5 text-xs font-semibold text-indigo-700">
+                    Store
+                  </span>
+                  <span className="text-sm font-medium text-gray-700">
+                    Relay Store Inspector
+                  </span>
+                </div>
+                <div className="mb-3 rounded-lg border border-indigo-100 bg-white p-4">
+                  <StoreCacheDemo />
+                </div>
+                <p className="text-sm leading-relaxed text-gray-600">
+                  Relay Store는 모든 GraphQL 응답을{' '}
+                  <code className="text-xs">Type:ID</code> 형태로 정규화하여 저장합니다. 같은
+                  엔티티가 여러 쿼리에 등장해도 하나의 레코드로 관리되어 일관성이 보장됩니다.
+                  GC가 참조되지 않는 레코드를 자동 정리합니다.
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>
@@ -289,3 +520,161 @@ const { data } = await gqlFetch(\`
 // ✅ 0% wasted data (no over-fetching)
 // ✅ All related data in one shot (no under-fetching)
 // ✅ Type-safe: schema guarantees response shape`
+
+const RELAY_ENVIRONMENT_CODE = `// Relay Environment = Network + Store
+import { Environment, Network, RecordSource, Store } from 'relay-runtime'
+
+const fetchFn = async (request, variables) => {
+  const response = await fetch('/graphql', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query: request.text, variables }),
+  })
+  return response.json()
+}
+
+const environment = new Environment({
+  network: Network.create(fetchFn),  // 서버 통신 담당
+  store: new Store(new RecordSource()), // 정규화 캐시 담당
+})
+
+// 컴포넌트에서 사용:
+// const data = useLazyLoadQuery(graphql\`query { user(id: "1") { name } }\`, {})
+// → Suspense로 로딩 처리, Store에 자동 캐싱`
+
+const FRAGMENT_PROBLEM_CODE = `// ❌ 루트에서 모든 데이터를 가져와 props로 전달
+const QUERY = \`query {
+  user(id: "1") {
+    id name email avatar     # UserHeader가 필요한 것
+    posts {
+      id title body createdAt # PostItem이 필요한 것
+      comments {
+        id body               # CommentItem이 필요한 것
+        author { name }
+      }
+    }
+  }
+}\`
+
+// 자식 컴포넌트에 필드를 추가하면:
+// 1. 쿼리 수정
+// 2. 중간 컴포넌트의 props 타입 수정
+// 3. prop 전달 코드 수정
+// → 변경이 전파되는 "shotgun surgery" 문제`
+
+const FRAGMENT_SOLUTION_CODE = `// ✅ 각 컴포넌트가 자신의 fragment를 선언
+// UserHeader.tsx
+const UserHeaderFragment = graphql\`
+  fragment UserHeader_user on User {
+    name email avatar    # 이 컴포넌트가 사용하는 필드만
+  }
+\`
+// PostItem.tsx
+const PostItemFragment = graphql\`
+  fragment PostItem_post on Post {
+    title body createdAt
+    comments { ...CommentItem_comment }  # 자식 fragment 포함
+  }
+\`
+// 루트 쿼리 — fragment를 spread할 뿐, 필드를 직접 나열하지 않음
+const Query = graphql\`
+  query UserProfileQuery($id: ID!) {
+    user(id: $id) {
+      ...UserHeader_user   # 컴파일러가 자동 합성
+      posts { ...PostItem_post }
+    }
+  }
+\`
+// 자식에 필드 추가 시 → 해당 fragment만 수정하면 끝!`
+
+const PAGINATION_PROBLEM_CODE = `// ❌ 수동 오프셋 페이지네이션
+const [posts, setPosts] = useState([])
+const [page, setPage] = useState(0)
+const PAGE_SIZE = 5
+
+useEffect(() => {
+  const offset = page * PAGE_SIZE
+  fetch(\`/api/posts?offset=\${offset}&limit=\${PAGE_SIZE}\`)
+    .then(res => res.json())
+    .then(data => {
+      setPosts(data.posts)  // 기존 데이터 교체! (누적 아님)
+    })
+}, [page])
+
+// 문제:
+// 1. 페이지 전환 시 데이터가 사라졌다 나타남 (깜빡임)
+// 2. 중간에 항목 삽입/삭제 시 offset이 밀려서 중복/누락
+// 3. "더 보기" 구현 시 상태 관리가 복잡해짐`
+
+const PAGINATION_SOLUTION_CODE = `// ✅ Relay @connection + usePaginationFragment
+const PostListFragment = graphql\`
+  fragment PostList_query on Query
+  @refetchable(queryName: "PostListPaginationQuery")
+  @argumentDefinitions(
+    first: { type: "Int", defaultValue: 5 }
+    after: { type: "String" }
+  ) {
+    posts(first: $first, after: $after)
+      @connection(key: "PostList_posts") {  # Relay가 페이지를 자동 병합
+      edges {
+        node { id title author { name } }
+      }
+      totalCount
+    }
+  }
+\`
+
+// 컴포넌트에서:
+const { data, loadNext, hasNext } = usePaginationFragment(
+  PostListFragment, queryRef
+)
+// loadNext(5) → 다음 5개를 기존 리스트에 누적 (append)
+// hasNext → 더 불러올 데이터가 있는지 자동 판별
+// Relay Store가 @connection 데이터를 정규화하여 관리`
+
+const OPTIMISTIC_PROBLEM_CODE = `// ❌ 서버 응답까지 UI가 멈추는 패턴
+async function addComment(body: string) {
+  setSubmitting(true) // 스피너 표시
+
+  // 서버 응답을 기다림 (300ms+)
+  const { data } = await gqlFetch(\`
+    mutation($input: AddCommentInput!) {
+      addComment(input: $input) {
+        comment { id body author { name } }
+      }
+    }
+  \`, { input: { postId: "1", body, authorId: "1" } })
+
+  // 응답 후에야 UI 업데이트
+  setComments(prev => [...prev, data.addComment.comment])
+  setSubmitting(false)
+}
+// 사용자 경험: 클릭 → 300ms 멈춤 → 결과 표시`
+
+const OPTIMISTIC_SOLUTION_CODE = `// ✅ Relay Optimistic Response — 즉시 UI 반영
+const [commit] = useMutation(AddCommentMutation)
+
+function addComment(body: string) {
+  commit({
+    variables: { input: { postId: "1", body, authorId: "1" } },
+
+    // 서버 응답 전에 Store에 가짜 데이터를 먼저 기록
+    optimisticResponse: {
+      addComment: {
+        comment: {
+          id: \`temp-\${Date.now()}\`,  // 임시 ID
+          body,
+          author: { name: "Alice Kim" },
+        },
+      },
+    },
+
+    // 서버 응답 후 Store 업데이트 (실제 ID로 교체)
+    updater: (store) => {
+      const newComment = store.getRootField('addComment')
+        .getLinkedRecord('comment')
+      // ... Store에 연결
+    },
+  })
+}
+// 사용자 경험: 클릭 → 즉시 표시 → 서버 확인 → 실패 시 롤백`

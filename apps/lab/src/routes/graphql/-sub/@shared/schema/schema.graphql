@@ -1,4 +1,10 @@
+# Relay requires a Node interface and node() query for refetching
+interface Node {
+  id: ID!
+}
+
 type Query {
+  node(id: ID!): Node
   user(id: ID!): User
   users(first: Int = 10, after: String): UserConnection!
   post(id: ID!): Post
@@ -12,7 +18,7 @@ type Mutation {
   addComment(input: AddCommentInput!): AddCommentPayload!
 }
 
-type User {
+type User implements Node {
   id: ID!
   name: String!
   email: String!
@@ -20,7 +26,7 @@ type User {
   posts: [Post!]!
 }
 
-type Post {
+type Post implements Node {
   id: ID!
   title: String!
   body: String!
@@ -29,7 +35,7 @@ type Post {
   createdAt: String!
 }
 
-type Comment {
+type Comment implements Node {
   id: ID!
   body: String!
   author: User!

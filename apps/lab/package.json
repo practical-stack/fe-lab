@@ -7,6 +7,7 @@
     "dev": "vite dev",
     "build": "vite build",
     "typecheck": "tsc -b",
+    "relay": "relay-compiler",
     "test": "vitest run",
     "test:watch": "vitest"
   },
@@ -27,6 +28,8 @@
     "overlay-kit": "^1.9.0",
     "react": "catalog:",
     "react-dom": "catalog:",
+    "react-relay": "^20.1.1",
+    "relay-runtime": "^20.1.1",
     "tailwindcss": "catalog:"
   },
   "devDependencies": {
@@ -36,11 +39,15 @@
     "@testing-library/react": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "@types/react-relay": "^18.2.1",
+    "@types/relay-runtime": "^20.1.1",
     "@vitejs/plugin-react": "catalog:",
     "jsdom": "catalog:",
+    "relay-compiler": "^20.1.1",
     "shiki": "^4.0.0",
     "typescript": "catalog:",
     "vite": "catalog:",
+    "vite-plugin-relay": "^2.1.0",
     "vite-tsconfig-paths": "catalog:",
     "vitest": "catalog:"
   }
