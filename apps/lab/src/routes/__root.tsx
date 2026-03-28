@@ -79,6 +79,12 @@ function RootComponent() {
                 >
                   GraphQL
                 </Link>
+                <Link
+                  to="/stacking-context"
+                  className="text-sm text-gray-600 hover:text-gray-900 [&.active]:font-semibold [&.active]:text-blue-600"
+                >
+                  Stacking Context
+                </Link>
               </div>
             </nav>
             <main className="mx-auto max-w-4xl px-4 py-8">

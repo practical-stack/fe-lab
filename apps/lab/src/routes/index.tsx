@@ -47,6 +47,13 @@ const concepts = [
       'GraphQL 기초부터 Relay 딥다이브까지 — REST의 한계, 쿼리/뮤테이션 기본, 스키마 타입 시스템, Fragment Colocation, 커서 페이지네이션, Optimistic Updates 등.',
     source: 'GraphQL + Relay: 단계별 학습 가이드',
   },
+  {
+    to: '/stacking-context' as const,
+    title: 'Stacking Context',
+    description:
+      'CSS Stacking Context의 기초부터 실전까지 — 7단계 쌓임 순서, SC 생성 조건, z-index 함정, opacity/transform 부작용, isolation: isolate, z-index 토큰 시스템.',
+    source: 'CSS Stacking Context: 단계별 학습 가이드',
+  },
 ]
 
 function Home() {
